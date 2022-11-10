@@ -29,7 +29,7 @@ Stateful widget:
 - Text: menampilkan string teks dengan *single style* pada aplikasi.
 
 # setState()
-setState() berguna untuk mengimformasikan framework Flutter bahwa status internal objek telah berubah  dan harus di build kembali. Fungsi setState() dapat dipanggil setiap ingin adanya perubahan dalam variabel ditampilkan pada layar UI, contohnya ketika tombol diklik, warna teks akan berubah. 
+setState() berguna untuk mengimformasikan framework Flutter bahwa status internal objek telah berubah  dan harus di build kembali. Fungsi setState() dapat dipanggil setiap ingin adanya perubahan dalam variabel ditampilkan pada layar UI, contohnya ketika tombol diklik, warna teks akan berubah. Pada tugas 7 ini, variabel `_counter` terdampak dengan fungsi setState(), ketika user menekan tombol plus, `_counter` akan bertambah dan setState() akan dipanggil kemudian menampilkan perubahan dalam variabel `_counter` pada layar UI, begitu juga ketika user menekan tombol minus.
 
 # Perbedaan antara const dengan final
 const:
