@@ -1,3 +1,4 @@
+# TUGAS 7
 # Stateless widget dan stateful widget, serta perbedaannya
 Stateless widget adalah widget yang tidak memiliki state, mereka tidak dapat berubah. Properti dan penampilannya akan tetap sama selama *lifetime*-nya. Contoh: Icon, IconButton, Text, dll.
 
@@ -48,3 +49,48 @@ final:
 5. Menambahkan statement if-else, jika `_counter` bernilai genap maka akan memunculkan text "GENAP" yang berwarna merah, sednagkan jika `_counter` bernilai ganjil makan akan menumculkan text "GANJIL" berwarna biru.
 6. Menambahkan widget `floatingActionButton` yang di-*assign* dengan widget `stack` untuk memunculkan 2 floating button dengan icon *add* dan *remove*, kemudian menggunakan widget `positioned` sebagai childrennya.
 
+
+# TUGAS 8
+# Perbedaan Navigator.push dan Navigator.pushReplacement
+ Navigator digunakan untuk mengganti halaman aplikasi dengan konsep stack. Perbedaan Navigator.push dengan Navigator.pushReplacement adalah halaman baru ditambahkan ke stack saat memanggil Navigator.push, sedangkan Navigator.pushReplacement akan mengganti halaman yang ada di bagian atas tumpukan dengan halaman baru. Contohnya, di stack terdapat page transition, jika memanggil Navigator.push, maka page 1 akan ditambah ke stack, jika memanggil Navigator.push lagi, maka page 2 akan ditambah ke stack, sehingga di stack akan terdapat 3 item, yaitu page transition, page 1, dan page 2. Sedangkan, jika memanggil Navigator.pushReplacement, maka page 1 akan diganti oleh page 2, sehingga di stack hanya akan terdapat 2 item, yaitu page transition dan page 2.
+# Widget yang digunakan di proyek tugas 7
+- AppBar: komponen utama dari widget scaffold, digunakan untuk menampilkan widget toolbar, leading, title, dan action.
+- Center: memposisikan widget *children* ke tengah *space* layar.
+- Column: memposisikan widget *children* secara vertikal.
+- Container : digunakan untuk menyimpan 1 atau lebih widget dan menempatkannya di layar, container dapat diilustrasikan sebagai kotak yang berisi widget-widget.
+- Card : membuat ruang atau panel dengan sudut yang membulat dan sedikit lebih tinggi di sisi bawah.
+- DropDownButtonFormField : memungkinkan user untuk dapat memilih dari sejumlah item. Dropdown menunjukkan item yang sedang dipilih serta terdapat panah yang dapat membuka menu untuk memilih item lain.
+- Drawer : digunakan untuk menyediakan akses ke berbagai tujuan dan fungsi yang disediakan di aplikasi. Drawer menampilkan serta mengarahkan tautan ke berbagai rute yang ada di aplikasi flutter.
+- Form : digunakan untuk berinteraksi dengan aplikasi serta mengumpulkan informasi dari pengguna. Form dapat melakukan banyak tugas seperti autentikasi pengguna, menambahkan pengguna, mencari, memfilter, dll.
+- FloatingActionButton : tombol ikon melingkar yang mengarah ke konten untuk mendorong tindakan yang terjadi di aplikasi.
+- Icon : menampilkan icon tertentu pada aplikasi.
+- ListTile : digunakan untuk mengisi ListView di Flutter, biasanya berisi judul serta ikon leading dan trailing.
+- MaterialApp: membungkus semua komponen dan widget yang biasanya diperlukan untuk desain material aplikasi.
+- Positioned :  menempatkan widget di atas satu sama lain, biasanya digunakan untuk memposisikan *child* widget pada widget stack.
+- Padding : menambahkan padding atau ruang kosong di sekitar widget.
+- Row : menyusun anak widget secara horizontal dan vertikal sesuai kebutuhan.
+- Stack : berguna ketika ingin menumpang tindihkan beberapa *children*.
+- Scaffold: menyediakan API untuk menampilkan *drawers* dan *bottom sheet*, serta digunakan untuk mengimplementasikan struktur layout fungsional dasar dari suatu aplikasi.
+- SingleChildScrollView : dapat digunakan ketika ruang yang menampung widget tidak cukup besar, jadi widget-widgetnya ditampilkan dengan cara *scroll*.
+- SizedBox :dapat digunakan untuk mengatur batasan ukuran ke widget anak.
+- TextStyle: membuat style pada teks.
+- TextButton : tombol yang mendengarkan gerakan onPressed() dan onLongPress().
+- Theme: menambahkan tema ke aplikasi.
+- Text: menampilkan string teks dengan *single style* pada aplikasi.
+
+# Jenis-jenis event pada Flutter
+- onPressed : event ketika widget ditekan
+- onSaved : event ketika widget disimpan
+- onEnter : event ketika pointer mouse enter suatu widget
+- onExit : event ketika pointer mouse exit suatu widget
+- onHover : event ketika pointer ke posisi widget tanpa menekannya
+# Cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter.
+Sebagian besar app berisi beberapa layar untuk menampilkan berbagai jenis informasi. Misalnya, ada suatu aplikasi untuk menampilkan produk. Saat pengguna mengetuk gambar suatu produk, halaman baru akan keluar untuk menampilkan detail tentang produk tersebut. Disinilah fungsi navigator, yaitu untuk mengganti halaman. Navigator digunakan untuk mengganti halaman aplikasi dengan konsep stack. Navigator akan mengarahkan ke suatu halaman dengan Navigator.push() dan mengarahkannya kembali ke halaman semula dengan Navigator.pop().
+# Mengimplementasikan checklist tugas
+2. Menambah drawer pada file main.dart yang ada pada folder lib.
+3. Membuat file baru bernama `tambahbudget.dart` dan `databudget.dart`.
+4. Menambahkan drawer dan form pada `tambahbudget.dart` serta menambah elemen-elemen input, yaitu `_judulBudget`,` _tipeBudget`, dan `_budget`.
+5. Menambahkan statement widget `Padding` untuk input judul dan nominal, `DropdownButtonFormField` untuk input jenis, dan `TextButton`.
+6. Menambahkan drawer `databudget.dart` serta menambah constructor input, yaitu `judulBudget`,` tipeBudget`, dan `budget`.
+7. Membuat fungsi addBudget yang akan menambahkan objek DataBudgetPage ke list budgets
+8. Menambah widget ListTile yang akan menampilkan judulBudget, tipeBudget, dan budget.
