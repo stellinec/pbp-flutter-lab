@@ -90,7 +90,8 @@ Sebagian besar app berisi beberapa layar untuk menampilkan berbagai jenis inform
 2. Menambah drawer pada file main.dart yang ada pada folder lib.
 3. Membuat file baru bernama `tambahbudget.dart` dan `databudget.dart`.
 4. Menambahkan drawer dan form pada `tambahbudget.dart` serta menambah elemen-elemen input, yaitu `_judulBudget`,` _tipeBudget`, dan `_budget`.
-5. Menambahkan statement widget `Padding` untuk input judul dan nominal, `DropdownButtonFormField` untuk input jenis, dan `TextButton`.
+5. Menambahkan widget `Padding` untuk input judul dan nominal, `DropdownButtonFormField` untuk input jenis, dan `TextButton` untuk menyimpan data input.
 6. Menambahkan drawer `databudget.dart` serta menambah constructor input, yaitu `judulBudget`,` tipeBudget`, dan `budget`.
-7. Membuat fungsi addBudget yang akan menambahkan objek DataBudgetPage ke list budgets
+7. Membuat fungsi addBudget yang akan menambahkan objek DataBudgetPage ke list budgets.
 8. Menambah widget ListTile yang akan menampilkan judulBudget, tipeBudget, dan budget.
+9. Melakukan add-commit-push ke GitHub.
