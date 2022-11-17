@@ -177,7 +177,7 @@ class _TambahBudgetPageState extends State<TambahBudgetPage> {
                                 ),
                                 onPressed: () {
                                     if (_formKey.currentState!.validate()) {
-                                      DataBudgetPage.addBudget(judulBudget: _judu lBudget, budget: _budget, tipeBudget: _tipeBudget,);
+                                      DataBudgetPage.addBudget(judulBudget: _judulBudget, budget: _budget, tipeBudget: _tipeBudget,);
                                     showDialog(
                                             context: context,
                                             builder: (context) {
