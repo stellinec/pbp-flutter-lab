@@ -53,7 +53,7 @@ final:
 # TUGAS 8
 # Perbedaan Navigator.push dan Navigator.pushReplacement
  Navigator digunakan untuk mengganti halaman aplikasi dengan konsep stack. Perbedaan Navigator.push dengan Navigator.pushReplacement adalah halaman baru ditambahkan ke stack saat memanggil Navigator.push, sedangkan Navigator.pushReplacement akan mengganti halaman yang ada di bagian atas tumpukan dengan halaman baru. Contohnya, di stack terdapat page transition, jika memanggil Navigator.push, maka page 1 akan ditambah ke stack, jika memanggil Navigator.push lagi, maka page 2 akan ditambah ke stack, sehingga di stack akan terdapat 3 item, yaitu page transition, page 1, dan page 2. Sedangkan, jika memanggil Navigator.pushReplacement, maka page 1 akan diganti oleh page 2, sehingga di stack hanya akan terdapat 2 item, yaitu page transition dan page 2.
-# Widget yang digunakan di proyek tugas 7
+# Widget yang digunakan di proyek tugas 8
 - AppBar: komponen utama dari widget scaffold, digunakan untuk menampilkan widget toolbar, leading, title, dan action.
 - Center: memposisikan widget *children* ke tengah *space* layar.
 - Column: memposisikan widget *children* secara vertikal.
@@ -95,3 +95,131 @@ Sebagian besar app berisi beberapa layar untuk menampilkan berbagai jenis inform
 7. Membuat fungsi addBudget yang akan menambahkan objek DataBudgetPage ke list budgets.
 8. Menambah widget ListTile yang akan menampilkan judulBudget, tipeBudget, dan budget.
 9. Melakukan add-commit-push ke GitHub.
+
+
+
+# TUGAS 9
+# Apakah bisa melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Jawabannya adalah iya, kita bisa melakukan pengambilan data JSON tanpa membuat model terlebih dahulu, yaitu dengan menggunakan `Serializing JSON inline`. Dalam membuat *network-connected apps*, kita akan memerlukan data JSON, terdapat 2 strategi dalam bekerja dengan data JSON, yaitu  `Manual Serilization` dan `Automated serialization using code generation`. Dalam `Manual Serilization`, Flutter memiliki library *built-in* yaitu `dart:convert`, dengan `dart:convert`, kita dapat men-*serialize* model JSON dengan 2 cara, yaitu `Serializing JSON inline` dan `Serializing JSON inside model classes`. Dengan `Serializing JSON inline`, kita tidak lagi perlu membuat model terlebih dahulu untuk pengambilan data JSON. Pada `Serializing JSON inline`, JSON akan di-*decode* dengan memanggil fungsi `jsonDecode()` yang menggunakan string JSON sebagai argumen dan akan mengembalikan Map < String, dynamic >, sehingga, kita tidak akan mengetahui tipe value sampai runtime. Kode yang dihasilkan akan lebih rawan error. Oleh karena itu akan lebih baik jika kita membuat model terlebih dahulu sebelum melakukan pengambilan data JSON, agar dapat mengetahui tipe value sebelum runtime.
+
+# Widget yang digunakan di proyek tugas 9
+- AppBar: komponen utama dari widget scaffold, digunakan untuk menampilkan widget toolbar, leading, title, dan action.
+- Align : berfungsi untuk menyelaraskan *child* di dalam dirinya sendiri, align cukup fleksibel dan bisa diubah ukurannya sesuai dengan ukuran *child*-nya.
+- BoxDecoration : memdeskripsikan bagaimana wujud sebuah box untuk ditampilkan di halaman flutter, seperti bordernya, colornya, shadownya, dll. 
+- Center: memposisikan widget *children* ke tengah *space* layar.
+- Column: memposisikan widget *children* secara vertikal.
+- Container : digunakan untuk menyimpan 1 atau lebih widget dan menempatkannya di layar, container dapat diilustrasikan sebagai kotak yang berisi widget-widget.
+- Drawer : digunakan untuk menyediakan akses ke berbagai tujuan dan fungsi yang disediakan di aplikasi. Drawer menampilkan serta mengarahkan tautan ke berbagai rute yang ada di aplikasi flutter.
+- FloatingActionButton : tombol ikon melingkar yang mengarah ke konten untuk mendorong tindakan yang terjadi di aplikasi.
+- FutureBuilder : digunakan untuk membuat widget berdasarkan snapshot interaksi terbaru dengan Future, FutureBuilder membantu dalam menjalankan beberapa fungsi asinkron dan berdasarkan hasil fungsi tersebut, UI akan diperbarui.
+FutureBuilder pada dasarnya adalah Stateful yaitu mempertahankan statusnya sendiri seperti yang kami lakukan di StatefulWidgets.
+- ListTile : digunakan untuk mengisi ListView di Flutter, biasanya berisi judul serta ikon leading dan trailing.
+- ListView : berfungsi untuk menampilkan *children*-nya satu demi satu dalam arah gulir yaitu, vertikal atau horizontal.
+- MaterialApp: membungkus semua komponen dan widget yang biasanya diperlukan untuk desain material aplikasi.
+- Padding : menambahkan padding atau ruang kosong di sekitar widget.
+- RichText : menampilkan teks yang menggunakan berbagai gaya yang berbeda-beda.
+- Scaffold: menyediakan API untuk menampilkan *drawers* dan *bottom sheet*, serta digunakan untuk mengimplementasikan struktur layout fungsional dasar dari suatu aplikasi.
+- SingleChildScrollView : dapat digunakan ketika ruang yang menampung widget tidak cukup besar, jadi widget-widgetnya ditampilkan dengan cara *scroll*.
+- SizedBox :dapat digunakan untuk mengatur batasan ukuran ke widget anak.
+- TextStyle: membuat style pada teks.
+- Text: menampilkan string teks dengan *single style* pada aplikasi.
+- TextSpan : merupakan rentang teks yang tidak dapat diubah, textspan memiliki properti style untuk memberi gaya pada teks dan properti *children* untuk menambahkan lebih banyak teks.
+- CircularProgressIndicator : menunjukkan bahwa aplikasi sedang sibuk.
+
+# Mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter
+1. Menambahkan *package* http dengan melakukan `flutter pub add http` pada terminal proyek Flutter.
+2. Menambahkan kode berikut pada file AndroidManifest.xml untuk memperbolehkan akses Internet pada aplikasi Flutter yang sedang dibuat.
+```
+...
+    <application>
+    ...
+    </application>
+    <!-- Required to fetch data from the Internet. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+...
+```
+3. Membuat *network request* dengan menggunakan metode http.get(). Metode http.get() mengembalikan *Future* yang berisi Response. *Future* adalah *core* dari class Dart untuk bekerja dengan operasi async. Objek *Future* mewakili nilai atau kesalahan yang akan tersedia di masa mendatang. Sedangkan http.Response berisi data yang diterima dari panggilan http yang berhasil. Berikut adalah contoh kodenya.
+```
+content_copy
+Future<http.Response> fetchAlbum() {
+   kembalikan http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+}
+```
+4. Mengkonversi respons menjadi objek Dart khusus, agar mempermudah bekerja dengan data JSON. Kita dapat membuat objek dengan membuat class terlebih dahulu, class akan berisi data dari *network request*. 
+5. Mengubah response body menjadi Peta JSON dengan paket dart:convert.
+```
+ namaClass.fromJson(jsonDecode(response.body))
+```
+6. Memanggil fungsi fetchnamaClass().
+7. Menampilkan data di layar flutter dengan menggunakan widget `FutureBuilder`. Widget FutureBuilder memudahkan untuk bekerja dengan sumber data asinkron.
+```
+FutureBuilder<namaClass>(
+    future: fetchnamaClass(),
+    ...
+)
+```
+
+
+# Mengimplementasikan checklist tugas
+1. Membuat folder dengan nama `model` dan membuat file dengan nama `mywatchlist.dart` di dalamnya.
+2. Meng-*copy* data json dari tugas 3, kemudian *paste* data tersebut ke situs web Quicktype.
+3. Pilih pilihan `Copy Code` pada Quicktype dan *paste* kode yang telah disalin tersebut ke dalam file `mywatchlist.dart`.
+4. Melakukan `flutter pub add http` pada terminal proyek Flutter untuk menambahkan package http.
+5. Menambahkan kode berikut pada `android/app/src/main/AndroidManifest.xml` untuk memperbolehkan akses Internet pada aplikasi Flutter yang sedang dibuat.
+```
+...
+    <application>
+    ...
+    </application>
+    <!-- Required to fetch data from the Internet. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+...
+```
+6. Membuat file baru bernama `mywatchlistpage.dart` dan menambah impor-impor yang dibutuhkan.
+```
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:counter_7/model/mywatchlist.dart';
+import 'package:counter_7/databudget.dart';
+import 'package:counter_7/main.dart';
+import 'package:counter_7/tambahbudget.dart';
+import 'package:counter_7/detailpage.dart';
+import 'package:flutter/material.dart';
+```
+7. Melakukan pengambilan data dari URL https://tugas2pbpsc.herokuapp.com/mywatchlist/json/ menggunakan `http.get` dengan kode sebagai berikut.
+```
+Future<List<MyWatchList>> fetchMyWatchList() async {
+        var url = Uri.parse('https://tugas2pbpsc.herokuapp.com/mywatchlist/json/');
+        print(url);
+        var response = await http.get(
+        url,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+        },
+        );
+        // melakukan decode response menjadi bentuk json
+        var data = jsonDecode(utf8.decode(response.bodyBytes));
+        // melakukan konversi data json menjadi object ToDo
+        List<MyWatchList> watchList = [];
+        for (var d in data) {
+        if (d != null) {
+            watchList.add(MyWatchList.fromJson(d));
+        }
+        }
+
+        return watchList;
+    }
+```
+8. Menambah drawer dan FutureBuilder sebagai body untuk menampilkan judul-judul watch list serta membuat navigasi dari setiap judul ke halaman detail pada `mywatchlistpage.dart`.
+9. Membuat file baru bernama `detailpage.dart` dan menambah impor-impor yang dibutuhkan.
+```
+import 'package:flutter/material.dart';
+import 'package:counter_7/mywatchlistpage.dart';
+import 'package:counter_7/databudget.dart';
+import 'package:counter_7/main.dart';
+import 'package:counter_7/tambahbudget.dart';
+import 'package:counter_7/model/mywatchlist.dart';
+```
+10. Menambah drawer dan Column untuk menampilkan judul, release date, rating, review, dan status (sudah ditonton/belum) serta menambahkan tombol untuk kembali ke daftar mywatchlist.
+11. Melakukan add-commit-push ke GitHub.

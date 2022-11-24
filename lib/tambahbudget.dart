@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:counter_7/databudget.dart';
 import 'package:counter_7/main.dart';
+import 'package:counter_7/mywatchlistpage.dart';
 class TambahBudgetPage extends StatefulWidget {
     const TambahBudgetPage({super.key});
 
@@ -29,7 +30,7 @@ class _TambahBudgetPageState extends State<TambahBudgetPage> {
             appBar: AppBar(
                 title: Text('Tambah Budget'),
             ),
-            drawer: Drawer(
+        drawer: Drawer(
                 child: Column(
                     children: [
                     // Menambahkan clickable menu
@@ -56,9 +57,20 @@ class _TambahBudgetPageState extends State<TambahBudgetPage> {
                     ListTile(
                         title: const Text('Data Budget'),
                         onTap: () {
-                         Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(builder: (context) => const DataBudgetPage()),
+                        // Route menu ke halaman form
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const DataBudgetPage()),
+                            );
+                        },
+                    ),
+                    ListTile(
+                        title: const Text('My Watch List'),
+                        onTap: () {
+                        // Route menu ke halaman form
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MyWatchListPage()),
                             );
                         },
                     ),

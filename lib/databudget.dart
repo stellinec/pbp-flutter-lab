@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:counter_7/tambahbudget.dart';
 import 'package:counter_7/main.dart';
+import 'package:counter_7/mywatchlistpage.dart';
 class DataBudgetPage extends StatefulWidget {
     static List<DataBudgetPage> budgets = [];
     final String? judulBudget;
@@ -53,6 +54,16 @@ class _DataBudgetPageState extends State<DataBudgetPage> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (context) => const DataBudgetPage()),
+                            );
+                        },
+                    ),
+                    ListTile(
+                        title: const Text('My Watch List'),
+                        onTap: () {
+                        // Route menu ke halaman form
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MyWatchListPage()),
                             );
                         },
                     ),
