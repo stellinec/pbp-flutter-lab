@@ -146,7 +146,7 @@ Future<http.Response> fetchAlbum() {
 }
 ```
 4. Mengkonversi respons menjadi objek Dart khusus, agar mempermudah bekerja dengan data JSON. Kita dapat membuat objek dengan membuat class terlebih dahulu, class akan berisi data dari *network request*. 
-5. Mengubah response body menjadi Peta JSON dengan paket dart:convert.
+5. Mengubah response body menjadi Peta JSON dengan package dart:convert.
 ```
  namaClass.fromJson(jsonDecode(response.body))
 ```
@@ -200,7 +200,7 @@ Future<List<MyWatchList>> fetchMyWatchList() async {
         );
         // melakukan decode response menjadi bentuk json
         var data = jsonDecode(utf8.decode(response.bodyBytes));
-        // melakukan konversi data json menjadi object ToDo
+        // melakukan konversi data json menjadi object MyWatchList
         List<MyWatchList> watchList = [];
         for (var d in data) {
         if (d != null) {
